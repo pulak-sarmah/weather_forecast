@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_forecast/weather_forecast/model/card_data_model.dart';
 import 'package:weather_forecast/weather_forecast/model/weather_forecast_model.dart';
+import 'package:weather_forecast/weather_forecast/ui/forecastCardv2.dart';
 
 import 'forecastCard.dart';
 
@@ -16,24 +17,24 @@ Widget bottomView(
 
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        "5-days 3-hours Weather Forecast".toUpperCase(),
-        style: TextStyle(fontSize: 14, color: Colors.black87),
-      ),
-      Container(
-        height: 170,
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) => SizedBox(width: 8),
-            itemCount: forecastList.length,
-            itemBuilder: (context, index) => ClipRRect(
+    children: List.generate(uniqueDates.length, (indx) {
+      return  Column(
+        children: [
+          Text(uniqueDates[indx]),
+          Container(
+            margin: EdgeInsets.only(bottom: 25),
+            height: 170,
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (context, index) => SizedBox(width: 8),
+                itemCount: cardData[uniqueDates[indx]].length,
+                itemBuilder: (context, index) => ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   child: Container(
                     width: MediaQuery.of(context).size.width / 1.5,
                     height: 160,
-                    child: forecastCard(snapshot, index),
+                    child: forecastCardv2(cardData[uniqueDates[indx]][index]),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             colors: [Color(0xff9661c3), Colors.white70],
@@ -41,7 +42,9 @@ Widget bottomView(
                             end: Alignment.bottomRight)),
                   ),
                 )),
-      )
-    ],
+          ),
+        ],
+      );
+    })
   );
 }

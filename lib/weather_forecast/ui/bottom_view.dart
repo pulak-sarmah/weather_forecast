@@ -5,8 +5,6 @@ import 'package:weather_forecast/weather_forecast/model/card_data_model.dart';
 import 'package:weather_forecast/weather_forecast/model/weather_forecast_model.dart';
 import 'package:weather_forecast/weather_forecast/ui/forecastCardv2.dart';
 
-import 'forecastCard.dart';
-
 Widget bottomView(
     AsyncSnapshot<WeatherForecastModel> snapshot, BuildContext context) {
   var forecastList = snapshot.data.list;

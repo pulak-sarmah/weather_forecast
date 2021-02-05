@@ -10,6 +10,7 @@ Widget forecastCardv2(Lista lista) {
 //  var forecastList = snapshot.data.list;
   //print(forecastList[0].dateTime);
   var dayofweek = DateFormat("EEEE").format(lista.dateTime);
+
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weather_forecast/weather_forecast/model/weather_forecast_model.dart';
 import 'package:weather_forecast/weather_forecast/network/network.dart';
 import 'package:weather_forecast/weather_forecast/ui/bottom_view.dart';
@@ -17,6 +18,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
   @override
   void initState() {
     super.initState();
+
     forecastObject = getWeather(cityName: _cityName);
     // print(forecastObject);
 

@@ -26,30 +26,32 @@ class _WeatherForecastState extends State<WeatherForecast> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          textFieldView(),
-          Container(
-            child: FutureBuilder<WeatherForecastModel>(
-                future: forecastObject,
-                builder: (BuildContext context,
-                    AsyncSnapshot<WeatherForecastModel> snapshot) {
-                  if (snapshot.hasData) {
-                    return Column(
-                      children: <Widget>[
-                        midView(snapshot),
-                        bottomView(snapshot,context),
-                      ],
-                    );
-                  } else {
-                    return Container(
-                      child: Center(child:CircularProgressIndicator()),
-                    );
-                  }
-                }),
-          )
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: ListView(
+          children: <Widget>[
+            textFieldView(),
+            Container(
+              child: FutureBuilder<WeatherForecastModel>(
+                  future: forecastObject,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<WeatherForecastModel> snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                        children: <Widget>[
+                          midView(snapshot),
+                          bottomView(snapshot,context),
+                        ],
+                      );
+                    } else {
+                      return Container(
+                        child: Center(child:CircularProgressIndicator()),
+                      );
+                    }
+                  }),
+            )
+          ],
+        ),
       ),
     );
   }

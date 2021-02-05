@@ -8,16 +8,17 @@ import 'package:http/http.dart' as http;
 class Network{
   Future<WeatherForecastModel> getWeatherForecast({String cityName}) async{
 
-   var cityname= cityName;
+   // var cityname= cityName;
+   //
+   //  Position position = await  Geolocator.getCurrentPosition();
+   // // print("https://geocode.xyz/${position.latitude},${position.longitude}?json=1&");
+   //  final r = await http.get("https://geocode.xyz/${position.latitude},${position.longitude}?json=1&");
+   //  print("${position.latitude},${position.longitude}");
+   //   Map<String,dynamic> data = jsonDecode(r.body);
+   //   cityname = data["city"];
+   //
 
-    Position position = await  Geolocator.getCurrentPosition();
-   // print("https://geocode.xyz/${position.latitude},${position.longitude}?json=1&");
-    final r = await http.get("https://geocode.xyz/${position.latitude},${position.longitude}?json=1&");
-     Map<String,dynamic> data = jsonDecode(r.body);
-     cityname = data["city"];
-
-
-   var finalUrl ="https://api.openweathermap.org/data/2.5/forecast?q="+cityname+"&mode=json&appid="+Util.appId+"&units=metric";
+   var finalUrl ="https://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&mode=json&appid="+Util.appId+"&units=metric";
     //final resposne1 = await http.get("http://geocode.xyz/${position.latitude},${position.longitude}?json=1");
    // print("${position.latitude}   :  ${position.longitude}");
 

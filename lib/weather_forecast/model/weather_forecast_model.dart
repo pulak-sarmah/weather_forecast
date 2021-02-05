@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class WeatherForecastModel {
   String cod;
   int message;
@@ -44,15 +46,22 @@ class Lista {
   Wind wind;
   Sys sys;
   String dtTxt;
+  DateTime dateTime;
+  String date;
 
   Lista(
       {this.dt,
-        this.main,
-        this.weather,
-        this.clouds,
-        this.wind,
-        this.sys,
-        this.dtTxt});
+      this.main,
+      this.weather,
+      this.clouds,
+      this.wind,
+      this.sys,
+      this.dtTxt}) {
+    dateTime = DateTime.parse(dtTxt);
+    DateFormat formatter = DateFormat('dd/MM/yyyy');
+    date = formatter.format(dateTime);
+
+  }
 
   Lista.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
@@ -63,10 +72,14 @@ class Lista {
         weather.add(new Weather.fromJson(v));
       });
     }
-    clouds = json['clouds'] != null ? new Clouds.fromJson(json['clouds']) : null;
+    clouds =
+        json['clouds'] != null ? new Clouds.fromJson(json['clouds']) : null;
     wind = json['wind'] != null ? new Wind.fromJson(json['wind']) : null;
     sys = json['sys'] != null ? new Sys.fromJson(json['sys']) : null;
     dtTxt = json['dt_txt'];
+    dateTime = DateTime.parse(dtTxt);
+    DateFormat formatter = DateFormat('dd/MM/yyyy');
+    date = formatter.format(dateTime);
   }
 
   Map<String, dynamic> toJson() {
@@ -105,14 +118,14 @@ class Main {
 
   Main(
       {this.temp,
-        this.feelsLike,
-        this.tempMin,
-        this.tempMax,
-        this.pressure,
-        this.seaLevel,
-        this.grndLevel,
-        this.humidity,
-        this.tempKf});
+      this.feelsLike,
+      this.tempMin,
+      this.tempMax,
+      this.pressure,
+      this.seaLevel,
+      this.grndLevel,
+      this.humidity,
+      this.tempKf});
 
   Main.fromJson(Map<String, dynamic> json) {
     temp = json['temp'].toDouble();
@@ -183,10 +196,11 @@ class Clouds {
 }
 
 class Wind {
-double speed;
+  double speed;
   int deg;
 
   Wind({this.speed, this.deg});
+
   Wind.fromJson(Map<String, dynamic> json) {
     speed = json['speed'].toDouble();
     deg = json['deg'];
@@ -228,13 +242,13 @@ class City {
 
   City(
       {this.id,
-        this.name,
-        this.coord,
-        this.country,
-        this.population,
-        this.timezone,
-        this.sunrise,
-        this.sunset});
+      this.name,
+      this.coord,
+      this.country,
+      this.population,
+      this.timezone,
+      this.sunrise,
+      this.sunset});
 
   City.fromJson(Map<String, dynamic> json) {
     id = json['id'];

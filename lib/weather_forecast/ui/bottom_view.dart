@@ -1,5 +1,7 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_forecast/weather_forecast/model/card_data_model.dart';
 import 'package:weather_forecast/weather_forecast/model/weather_forecast_model.dart';
 
 import 'forecastCard.dart';
@@ -7,6 +9,11 @@ import 'forecastCard.dart';
 Widget bottomView(
     AsyncSnapshot<WeatherForecastModel> snapshot, BuildContext context) {
   var forecastList = snapshot.data.list;
+
+  var uniqueDates = CardDataModel.getUniqueDatesFromLista(forecastList);
+  var cardData = CardDataModel.fromLista(forecastList);
+  print(cardData);
+
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[

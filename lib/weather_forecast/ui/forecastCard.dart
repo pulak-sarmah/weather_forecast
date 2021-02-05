@@ -7,6 +7,7 @@ import 'bottom_view.dart';
 
 Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
   var forecastList = snapshot.data.list;
+  //print(forecastList[0].dateTime);
   var dayofweek = "";
   DateTime date =
       new DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);

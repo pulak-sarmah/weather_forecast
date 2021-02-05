@@ -18,6 +18,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
   void initState() {
     super.initState();
     forecastObject = getWeather(cityName: _cityName);
+    // print(forecastObject);
 
   }
 
